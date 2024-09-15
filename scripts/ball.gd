@@ -6,6 +6,7 @@ var direction = Vector2.DOWN
 var is_active = true 
 
 func _ready() -> void:
+	speed = speed + (20 * game.level)
 	velocity = Vector2(speed * -1, speed)
 	
 func _physics_process(delta: float) -> void:
@@ -25,5 +26,11 @@ func _physics_process(delta: float) -> void:
 			velocity.x = 200
 			
 		
-			
-		
+func game_over():
+	game.score = 0
+	game.level = 1
+	get_tree().reload_current_scene()
+
+func _on_death_area_body_entered(body: Node2D) -> void:
+	game_over()
+	
