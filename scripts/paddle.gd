@@ -6,6 +6,7 @@ var original_width
 var long_paddle_duration: float = 5.0
 @onready var sprite = $Sprite2D
 @onready var collision_shape = $CollisionShape2D
+var is_expanded
 
 func _ready():
 		original_width = sprite.scale.x
@@ -23,10 +24,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func _on_expand_paddle():
-	print('Expanding paddle')
-	sprite.scale.x = original_width * 1.5
-	collision_shape.scale.x = 1.5
-	get_tree().create_timer(long_paddle_duration).timeout.connect(_on_long_paddle_timeout)
+	if not is_expanded:
+		print('Expanding paddle')
+		sprite.scale.x = original_width * 1.5
+		collision_shape.scale.x = 1.5
+		get_tree().create_timer(long_paddle_duration).timeout.connect(_on_long_paddle_timeout)
 
 func _on_long_paddle_timeout():
 	print('Reverting paddle size')
