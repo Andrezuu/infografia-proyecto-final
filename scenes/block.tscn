@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cj3wblqh6t3p2"]
+[gd_scene load_steps=5 format=3 uid="uid://cj3wblqh6t3p2"]
 
 [ext_resource type="Script" path="res://scripts/block.gd" id="1_5c7nt"]
-[ext_resource type="Texture2D" uid="uid://wf50u3dfxo8h" path="res://assets/simple_blocks.png" id="1_yvbfp"]
+[ext_resource type="Texture2D" uid="uid://coiqkn716ipwq" path="res://assets/quartz.png" id="2_nso7g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3sq4"]
 size = Vector2(42, 42)
+
+[sub_resource type="Gradient" id="Gradient_i1s4b"]
+colors = PackedColorArray(2.33434e-06, 0.588097, 0.191477, 1, 1, 1, 1, 1)
 
 [node name="Block" type="RigidBody2D" groups=["Block"]]
 scale = Vector2(0.5, 0.5)
@@ -12,11 +15,27 @@ gravity_scale = 0.0
 script = ExtResource("1_5c7nt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_yvbfp")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_nso7g")
 hframes = 3
 vframes = 3
 frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g3sq4")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.5
+one_shot = true
+preprocess = 0.5
+randomness = 1.0
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 48.0
+gravity = Vector2(0, -500)
+linear_accel_min = 0.1
+linear_accel_max = 0.1
+scale_amount_min = 0.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_i1s4b")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0gfphre5u3sy"]
+[gd_scene load_steps=6 format=3 uid="uid://d0gfphre5u3sy"]
 
 [ext_resource type="Script" path="res://scripts/ball.gd" id="1_bvmv8"]
 [ext_resource type="Texture2D" uid="uid://ceiusgcv43evn" path="res://assets/slime.png" id="2_fxig6"]
@@ -6,13 +6,31 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_q25u6"]
 radius = 13.0
 
+[sub_resource type="Curve" id="Curve_rjx1y"]
+_data = [Vector2(0, 0.989011), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_mlxlc"]
+colors = PackedColorArray(0.974826, 0.674063, 0.513391, 1, 1, 1, 1, 1)
+
 [node name="Ball" type="CharacterBody2D"]
 script = ExtResource("1_bvmv8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(0.1, 0.1)
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("2_fxig6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_q25u6")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 2
+texture = ExtResource("2_fxig6")
+emission_shape = 1
+emission_sphere_radius = 12.0
+scale_amount_min = 0.03
+scale_amount_max = 0.03
+scale_amount_curve = SubResource("Curve_rjx1y")
+color_ramp = SubResource("Gradient_mlxlc")

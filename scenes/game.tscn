@@ -3,14 +3,15 @@
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_s23rn"]
 
 [node name="Game" type="Node2D"]
+position = Vector2(0, -35)
 script = ExtResource("1_s23rn")
 metadata/_edit_group_ = true
 
 [node name="ScoreLabel" type="Label" parent="."]
-offset_left = 517.0
-offset_top = 665.0
-offset_right = 743.0
-offset_bottom = 707.0
+offset_left = 2.0
+offset_top = 673.0
+offset_right = 228.0
+offset_bottom = 715.0
 theme_override_font_sizes/font_size = 30
 text = "0"
 horizontal_alignment = 1
@@ -23,4 +24,13 @@ offset_bottom = 715.0
 theme_override_font_sizes/font_size = 30
 text = "Nivel 1"
 horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ScoreTExt" type="Label" parent="."]
+offset_left = 66.0
+offset_top = 630.0
+offset_right = 162.0
+offset_bottom = 672.0
+theme_override_font_sizes/font_size = 30
+text = "Score: "
 vertical_alignment = 2

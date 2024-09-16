@@ -4,7 +4,7 @@ extends Node2D
 @onready var level_label: Label = $LevelLabel
 
 var score = 0
-var level = 8
+var level = 1
 
 func add_points(points):
 	score += points

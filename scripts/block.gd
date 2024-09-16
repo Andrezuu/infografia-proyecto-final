@@ -2,19 +2,19 @@ extends RigidBody2D
 
 @onready var SPRITE: Sprite2D = $Sprite2D
 @onready var COLL_SHAPE: CollisionShape2D = $CollisionShape2D
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+@onready var PARTICLES: CPUParticles2D = $CPUParticles2D
+var is_special = false
+signal special_block_destroyed
 
 func block_collision():
 	game.add_points(10)
+	PARTICLES.emitting = true
 	var block_count = get_tree().get_nodes_in_group('Block')
+	if is_special:
+		emit_signal("special_block_destroyed")
+
+
+		
 	if block_count.size() == 1:
 		get_parent().get_node("Ball").is_active
 		await get_tree().create_timer(1).timeout
